@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>index</title>
+  </head>
+  <body>
+
+      <div class="title">
+        <h1 class="title">William Kelley</h1>
+      </div>
+
+    <div class="topnav">
+      <a class="active" href="home.html">Home</a>
+      <a href="pages/about.html">About</a>
+      <a href="pages/work.html">Past Work</a>
+      <a href="pages/hobbies.html">Hobbies</a>
+      <a href="pages/contact.html">Contact</a>
+    </div>
+
+    <div class="subtitle">
+      <h2 class="subtitle">Welcome to my personal site, made for the public.</h2>
+    </div>
+
+    <div class="">
+      <p>Hello, my name is Will.  Thanks for checking out my site!  The idea for this
+        page came from my older brother, who you can meet on his own page <a href="https://hughkelley.github.io/">here</a>.
+        Basically, I'm going to remake the site a few times to practice web design using
+        a variety of different development frameworks.  This is the second iteration,
+        which includes some JavaScript on top of the HTML from the first version.
+        It's going to be pretty bare bones--just some scripting embedded directly
+        into the HTML.  In the Software Development class I took, we jumped straight
+        into React and some higher level style libraries, so I missed out on a lot
+        of the "normal" stuff.  I wasn't sure exactly what features to add that would
+        best highlight the addition of JavaScript into the mix.  I'm starting with
+        an interactive map of my ~travels~ on the "About" page, but please let me
+        know if you have any fun suggestions! (Unless you are going to tell me to make
+        a clock...I don't want to). 
+      </p>
+
+
+    </div>
+
+    <button type="button"
+      onclick="document.getElementById('demo').innerHTML = Date()">
+      Click me to display Date and Time.
+    </button>
+
+    <p id="demo"></p>
+
+    <button>Introduce yourself!</button>
+    <script src="scripts/main.js"></script>
+
+  </body>
+</html>

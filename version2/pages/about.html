@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="../styles.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin="">
+    </script>
+
+    <title>About Me</title>
+
+    <style>
+      html, body {
+        height: 80%;
+        padding: 0;
+        margin: 0;
+      }
+      #mapid {
+        /* configure the size of the map */
+        width: 75%;
+        height: 100%;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="title">
+      <h1 class="title">About Me</h1>
+    </div>
+
+    <div class="topnav">
+      <a href="../home.html">Home</a>
+      <a class="active" href="about.html">About</a>
+      <a href="work.html">Past Work</a>
+      <a href="hobbies.html">Hobbies</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="subtitle">
+      <h2 class="subtitle"> Middlebury College</h2>
+    </div>
+    <div class="">
+      <p>I am about to graduate from Middlebury College in Vermont.  I studied Computer
+        Science, with minors in Spanish and Gender, Sexuality, & Feminist Studies.
+        I also liked taking classes in the Religion and Political Science departments.
+      </p>
+    </div>
+
+    <div class="subtitle">
+      <h2 class="subtitle">Gap Year</h2>
+    </div>
+    <div class="">
+      <p>I took a year off between high school and college to live abroad through
+        the <a href="https://www.rotary.org/en/our-programs/youth-exchanges">Rotary Youth Exchange</a> program.
+        Rotary was originally a business/social club oriented around public service
+        (I think they championed the search for a polio vaccine).  Now, they pay for
+        high schoolers to live in a different household somewhere around the world
+        for a year.
+      </p>
+    </div>
+
+    <div class="subtitle">
+      <h2 class="subtitle"> Albany High School </h2>
+    </div>
+    <div class="">
+      <p>I grew up in Albany, NY. Go Falcons.
+      </p>
+    </div>
+
+    <div class="subtitle">
+      <h2 class="subtitle">My Travels</h2>
+      <p>Click on an icon to see where I was!</p>
+    </div>
+
+
+     <div id="mapid"></div>
+
+     <script>
+
+    	var mymap = L.map('mapid').setView([25.00, 0.00], 1.5);
+
+    	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    		maxZoom: 18,
+    		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+    			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    		id: 'mapbox/streets-v11',
+    		tileSize: 512,
+    		zoomOffset: -1
+    	}).addTo(mymap);
+
+      var chillan = L.marker([-36.606, -72.1023]).addTo(mymap);
+      var albany = L.marker([42.6526, -72.7562]).addTo(mymap);
+      var london = L.marker([51.5074, -0.1278]).addTo(mymap);
+      var madrid = L.marker([40.4168, -3.7038]).addTo(mymap);
+      var barcelona = L.marker([41.3851, 2.1734]).addTo(mymap);
+      var marrakesh = L.marker([31.6295, -7.9811]).addTo(mymap);
+      var salvador = L.marker([-12.9777, -38.5016]).addTo(mymap);
+      var denali = L.marker([63.1148, -151.1926]).addTo(mymap);
+      var denver = L.marker([39.7392, -104.9903]).addTo(mymap);
+      var sanjose = L.marker([9.9281, -84.0907]).addTo(mymap);
+
+      const popups = L.layerGroup();
+
+      chillan.bindPopup("<b>Chillan, Bío Bió, Chile</b><br>I lived here during my gap year in 2016-2017.").addTo(popups);
+      albany.bindPopup("<b>Albany, NY, USA</b><br>My hometown!").addTo(popups);
+      london.bindPopup("<b>London, UK</b><br>I visited my oldest brother here while he was studying at LSE.").addTo(popups);
+      madrid.bindPopup("<b>Madrid, Spain</b><br>I was here in 2019 visiting my brother, who was once again studying in London.</br><br>It happened to be the weekend that Madrid was hosting the Champions League Final, and I ran into my friend Danny from Middlebry!").addTo(popups);
+      barcelona.bindPopup("<b>Barcelona, Spain</b><br>I went here with my family in middle school.").addTo(popups);
+      marrakesh.bindPopup("<b>Marrakesh, Morrocco</b><br>We went here after driving to Granada from Barcelona.").addTo(popups);
+      denali.bindPopup("<b>Denali, Alaska, USA</b><br>I spend a month doing trailwork in Denali State Park with S.C.A after freshman year of high school.").addTo(popups);
+      salvador.bindPopup("<b>Salvador, Bahía, Brasil</b><br>I visited my middle brother here while he was doing a gap year in Pirapora, a small down in Minas Gerais").addTo(popups);
+      denver.bindPopup("<b>Denver, CO, USA</b><br>I worked on a Senate campaign here for a month in 2020.").addTo(popups);
+      sanjose.bindPopup("<b>San Jose, Costa Rica</b><br>I've actually been here twice! Once on vacation and again as a volunteer for TeachUnited").addTo(popups);
+
+      L.control.layers(popups).addTo(mymap);
+      
+     </script>
+
+
+  </body>
+</html>
