@@ -1,3 +1,21 @@
+
+
+:root {
+  --black: black;
+  /*--lt-grey: #f5f7f7;*/
+  --lt-grey: #f8f8f8;
+  --med-grey: #999;
+  --dk-grey: #444;
+  /*--wh-blue: #f2f9ff;*/
+  --lt-blue: #def1ff;
+  --lt-blue-mono: #ededed;
+  --med-blue: #55b8fe;
+  --dk-blue: #0181dc;
+  --dk-blue-mono: #656565;
+  --green: #00ff00;
+  --red: #ff3333;
+}
+
 .App {
   text-align: center;
 }
@@ -24,12 +42,12 @@
   color: white;
 }
 .App-body {
-  background-color: #00000;
+  background-color: white;
   max-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* flex-direction: row; */
+  /* align-items: left; */
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: black;
 }
@@ -45,4 +63,91 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+#grid {
+  border: 2px solid var(--black);
+  border-collapse: collapse;
+  /*border-spacing: 0;*/
+  text-align: center;
+  font-size: 15pt;
+  font-weight: 300;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+#grid:focus {
+  outline: 2px solid var(--med-blue);
+}
+
+#grid.sat:focus {
+  /*outline: 2px solid var(--green);*/
+}
+
+#grid.unsat:focus {
+  outline: 3px solid var(--red);
+}
+
+#grid td {
+  width: 35px;
+  height: 36px;
+  position: relative;
+  /*border: 1px solid var(--black);*/
+  border-left: 1px solid var(--black);
+  border-top: 1px solid var(--black);
+}
+
+#grid td.active {
+  box-shadow: 0 0 12px 0px var(--dk-blue-mono);
+  -moz-box-shadow: 0 0 12px 0px var(--dk-blue-mono);
+  -webkit-box-shadow: 0 0 12px 0px var(--dk-blue-mono);
+  opacity: 0.8;
+  font-weight: 400;
+  z-index: 300;
+}
+
+#grid:focus td.active {
+  box-shadow: 0 0 12px 0px var(--dk-blue);
+  -moz-box-shadow: 0 0 12px 0px var(--dk-blue);
+  -webkit-box-shadow: 0 0 12px 0px var(--dk-blue);
+  border-style: double;
+  border: 1px solid var(--med-blue);
+}
+
+#grid td.pencil .fill {
+  /*opacity: 0.3;*/
+  color: var(--med-grey);
+}
+
+#grid td.black {
+  background-color: var(--black);
+}
+
+#grid td.highlight {
+  background-color: var(--lt-blue-mono);
+  font-weight: 400;
+}
+
+#grid:focus td.highlight {
+  border-style: double;
+  border: 1px solid var(--med-blue);
+  background-color: var(--lt-blue);
+}
+
+#grid td.lowlight {
+  /*background-color: var(--lt-grey);*/
+}
+
+#grid:focus td.lowlight {
+  /*background-color: var(--lt-grey);*/
+}
+
+.label {
+  font-size: 8pt;
+  font-weight: 500;
+  position: absolute;
+  left: 2px;
+  top: 0px;
 }

@@ -1,13 +1,13 @@
 {
-  "author": "Me I made it"
-  "date": "10/16/22"
-  "across": {
-
-  },
-  "down": {
-
+  "author": "Me I made it",
+  "title": "My Puzzle",
+  "date": "10/16/22",
+  "size": {"rows":5,"cols":5},
+  "clues": {
+    "across": [],
+    "down": []
   },
   "grid": [
-    0, 0, 0, 0, 1, 0, 1, 0
+    ".", "i", "s", "l", "e", ".", "o,", "k", "a", "y", "t", "w", "i", "n", "e", "w", "a", "l", "k", "o", "n", "l", "k", ".", "o", "n", "l", "y", "."
   ]
 }
