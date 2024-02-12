@@ -4,19 +4,21 @@ body {
 
 .title {
   color: black;
-  background-color: ;
+  /* background-color: ; */
 }
 
 .subtitle {
   color: #4056A1;
 
 }
+
 /* Construct navigation bar styling */
 .topnav {
-  color: #F1C320;
+  color: #BA7716;
   border-style: solid;
   overflow: hidden;
 }
+
 /* style interal links */
 .topnav a {
   float: left;
@@ -27,13 +29,15 @@ body {
   text-decoration: none;
   font-size: 17px;
 }
+
 /*change on hover*/
 .topnav a:hover {
-  background-color: #4056A1;
+  background-color: #3F652E;
   color: black;
 }
+
 /* color the active/current link */
 .topnav a.active {
-  background-color: #F13C20;
+  background-color: #4CBB17;
   color: white;
 }
