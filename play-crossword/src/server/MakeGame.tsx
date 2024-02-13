@@ -75,33 +75,58 @@ export const MakeGame = ({
     return isCorrect;
   };
 
+  const CellRefNumber = ({num}: {num: number}) => {
+    if(gameData.clues.across.find((clue: {number: number}) => clue.number === num) || 
+    gameData.clues.down.find((clue: {number: number}) => clue.number === num)){
+    return <div className="label">{num}</div>
+    } else return <></>
+
+  }
+
   // rows
   for (let row = 0; row < size.rows; row++) {
     const thisRow = [];
     // columns
     for (let col = 0; col < size.cols; col++) {
       thisRow.push(
-        <td>
-          <div className="label">{col + row * size.rows + 1}</div>
-          <input
-            style={{
-              backgroundColor:
-              grid[col + row * size.rows] === "." ? "black" : "white",
-              border: "none",
-              textAlign: "center",
-              textTransform: "capitalize",
-              height: "40px",
-              width: "40px",
-              margin: 0,
-            }}
-            type="text"
-            autoComplete="off"
-            maxLength={1}
-            onKeyUp={(e) => handleKeyUp(e)}
-            onChange={(e) => handleChange(e)}
-            key={col + row * size.rows}
-            id={(col + row * size.rows).toString()}
-          ></input>
+        <td className="black">
+        {grid[col + row * size.rows] === "." ? <div
+          id="black"
+          style={{
+            backgroundColor: "black",
+            border: "none",
+            textAlign: "center",
+            textTransform: "capitalize",
+            height: "42px",
+            width: "42px",
+            margin: "-2px",
+          }}>
+
+          </div> : 
+          <>
+          <CellRefNumber num={col + row * size.rows + 1}/>
+            <input
+              style={{
+                backgroundColor:
+                grid[col + row * size.rows] === "." ? "black" : "white",
+                border: "none",
+                textAlign: "center",
+                textTransform: "capitalize",
+                height: "40px",
+                width: "40px",
+                margin: 0,
+              }}
+              type="text"
+              autoComplete="off"
+              maxLength={1}
+              onKeyUp={(e) => handleKeyUp(e)}
+              onChange={(e) => handleChange(e)}
+              key={col + row * size.rows}
+              id={(col + row * size.rows).toString()}
+            />
+          </>}
+
+          
         </td>
       );
     }

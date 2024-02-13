@@ -121,7 +121,7 @@
 }
 
 #grid td {
-  width: 35px;
+  width: 36px;
   height: 36px;
   position: relative;
   /*border: 1px solid var(--black);*/
@@ -147,7 +147,7 @@
 }
 
 #grid td.pencil .fill {
-  /*opacity: 0.3;*/
+  opacity: 0.3;
   color: var(--med-grey);
 }
 
