@@ -15,7 +15,6 @@ function App() {
         <NavBar />
       </header>
       <div className="App-body">
-        {/* <a href="https://northeasternairquality.com">Bob's Link</a> */}
         <Routes>
           <Route path="/create" element={<Create />} />
           <Route path="/upload" element={<Upload />} />

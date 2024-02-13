@@ -1,7 +1,7 @@
 // import * as gamefile from "../sample.json";
 
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-
+import { GameData } from "../data";
 const ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 const createBlankArray = (answers: string[]) => {
@@ -9,20 +9,17 @@ const createBlankArray = (answers: string[]) => {
 };
 
 export const MakeGame = ({
-  size,
-  clues,
-  answers,
-  title,
+  gameData,
 }: {
-  size: { rows: number; cols: number };
-  clues: { across: string[]; down: string[] };
-  answers: string[];
-  title: string;
+  gameData: GameData
 }) => {
+  const {grid, title, size} = gameData
   const board = [];
   const [userAnswers, setUserAnswers] = useState<string[]>(() =>
-    createBlankArray(answers)
+    createBlankArray(grid)
   );
+
+  /** TODO: handle user action through grid and  */
   const [direction, setDirection] = useState<"across" | "down">("across");
   const [canSubmit, setCanSubmit] = useState(false);
 
@@ -33,8 +30,8 @@ export const MakeGame = ({
       userAnswers.forEach((answer: string) => {
         answer !== "" ? counter++ : counter--;
       });
-    counter >= answers.length - 1 ? setCanSubmit(true) : setCanSubmit(false);
-  }, [userAnswers, answers.length]);
+    counter >= grid.length - 1 ? setCanSubmit(true) : setCanSubmit(false);
+  }, [userAnswers, grid]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -42,20 +39,23 @@ export const MakeGame = ({
     const inputNum = e.target.id;
     const nextInputNum = (parseInt(inputNum) + 1).toString();
     const nextInput = document.getElementById(nextInputNum);
-    if (answers[parseInt(nextInputNum)] === ".") {
+    const updatedUserAnsers = [...userAnswers]
+    if (grid[parseInt(nextInputNum)] === ".") {
       const followingInpuNum = (parseInt(nextInputNum) + 1).toString();
       const followingInput = document.getElementById(followingInpuNum);
       followingInput?.focus();
     }
 
     if (ALPHABET.includes(e.target.value) && e.target.value !== "") {
-      userAnswers[parseInt(inputNum)] = e.target.value.toUpperCase();
-      // const currentInput = document.getElementById(inputNum.toString());
+      updatedUserAnsers[parseInt(inputNum)] = e.target.value.toUpperCase();
+
+      const currentInput = document.getElementById(inputNum.toString());
 
       nextInput?.focus();
     } else if (e.target.value === "") {
-      userAnswers[parseInt(inputNum)] = "";
+      updatedUserAnsers[parseInt(inputNum)] = ""
     }
+    setUserAnswers(updatedUserAnsers)
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -65,7 +65,7 @@ export const MakeGame = ({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isCorrect = userAnswers.every((square, index) => {
-      if (square !== answers[index]) {
+      if (square.toUpperCase() !== grid[index].toUpperCase()) {
         return false;
       } else {
         return true;
@@ -74,6 +74,7 @@ export const MakeGame = ({
     window.alert(`This puzzle is ${isCorrect ? "complete!" : "not correct"}`);
     return isCorrect;
   };
+
   // rows
   for (let row = 0; row < size.rows; row++) {
     const thisRow = [];
@@ -85,14 +86,12 @@ export const MakeGame = ({
           <input
             style={{
               backgroundColor:
-                answers[col + row * size.rows] === "." ? "black" : "white",
-              // display: "grid",
+              grid[col + row * size.rows] === "." ? "black" : "white",
               border: "none",
               textAlign: "center",
               textTransform: "capitalize",
               height: "40px",
               width: "40px",
-              // gridGap: 0,
               margin: 0,
             }}
             type="text"
@@ -103,18 +102,17 @@ export const MakeGame = ({
             key={col + row * size.rows}
             id={(col + row * size.rows).toString()}
           ></input>
-          {/* <div onChange={(e: ChangeEvent<HTMLDivElement>) => handleChange(e)}>
-            {userAnswers[col + row * size.rows]}
-          </div> */}
         </td>
       );
     }
     board.push(thisRow);
   }
 
+
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)} key={"answer"}>
+    <>
+      <div className="body-item-a">
+      <form className="game-board" onSubmit={(e) => handleSubmit(e)} key={"answer"}>
         <p>{title}</p>
         <table id="grid">
           <thead></thead>
@@ -122,11 +120,26 @@ export const MakeGame = ({
             {Array.isArray(board) && board.map((row) => <tr>{row}</tr>)}
           </tbody>
         </table>
-        <button disabled={!canSubmit} type="button">
+        <button disabled={!canSubmit}  type="submit">
           Check Puzzle
         </button>
       </form>
-    </div>
+      </div>
+     
+      <div className="body-item-b">
+
+        <h2 style={{textAlign: "left"}}>Across</h2>
+        <span style={{textAlign: "left"}}>{gameData.clues.across.map((clue: {number: number, clue: string}) => {
+          return <p>{clue.number}: {clue.clue}</p>
+        })}</span>
+        </div>
+      <div className="body-item-c">
+        <h2 style={{textAlign: "left"}}>Down</h2>
+        <span style={{textAlign: "left"}}>{gameData.clues.down.map((clue: {number: number, clue: string}) => {
+          return <p>{clue.number}: {clue.clue}</p>
+        })}</span>
+      </div>
+    </>
   );
 };
 

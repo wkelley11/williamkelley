@@ -5,7 +5,7 @@ const [gridSize, setGridSize] = React.useState(4);
 
   return (
     <>
-    <div>Create your own puzzle</div>
+    <div className="body-title">Create your own puzzle</div>
     <br/>
     <label htmlFor="size-select">Select puzzle size</label>
     <select

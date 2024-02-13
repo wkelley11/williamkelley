@@ -1,5 +1,6 @@
 import MakeGame from "../server/MakeGame";
 import * as game_data from "../data";
+import { game_one } from "../data";
 
 export const Select = () => {
   return (
@@ -19,54 +20,11 @@ export const Select = () => {
   );
 };
 
-export const Play = (game: any) => {
-  const size = { rows: 5, cols: 5 };
-  const clues = {
-    across: [],
-    down: [],
-  };
-
-  const answerGrid = [
-    ".",
-    "I",
-    "S",
-    "L",
-    "E",
-    ".",
-    "O",
-    "K",
-    "A",
-    "Y",
-    "T",
-    "W",
-    "I",
-    "N",
-    "E",
-    "W",
-    "A",
-    "L",
-    "K",
-    ".",
-    "O",
-    "N",
-    "L",
-    "Y",
-    ".",
-  ];
-
-  const emptyGrid = answerGrid.map((cell) => (cell === "." ? "." : ""));
-
+export const Play = () => {
   return (
-    <>
-      <MakeGame size={size} clues={clues} answers={emptyGrid} title="Empty" />
-      <span style={{ margin: 24 }}></span>
-      <MakeGame
-        size={size}
-        clues={clues}
-        answers={answerGrid}
-        title="Answer Grid"
-      />
-    </>
+    <div className="body-container">
+      <MakeGame gameData={game_one} />
+    </div>
   );
 };
 
