@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>index</title>
+</head>
+
+<script type="text/javascript" language="javascript" src="main.js"></script>
+<body">
+
+    <div class="">
+        <h1 class="">Tomato Time</h1>
+    </div>
+    <div class="">
+        <h2 class="">tomatos are proven to make you more productive</h2>
+    </div>
+
+    <div id="menu">
+        <button onClick=workInterval()>Work</button>
+        <button onClick=shortBreak()>Short Break</button>
+        <button onClick=longBreak()>Long Break</button>
+
+    </div>
+    <div id="timer-area">
+        <div id="tomato-wrapper">
+            <div id="stem-wrapper">
+                <div id="stem"></div>
+                <div id="leaf1"></div>
+                <div id="leaf2"></div>
+            </div>
+            <div id="tomato">
+                <span id="timer"></span>
+
+            </div>
+        </div>
+
+        <div id="bottom-menu">
+            <button onClick=start()>Start Timer</button>
+            <button onClick=stop()>Pause Timer</button>
+
+        </div>
+    </div>
+    <script type="text/javascript" language="javascript">
+        var timer = new Timer(3600);
+        let interval = null;
+        let jingle = new Audio("./TimerDone.mp3")
+
+        function start() {
+            console.log('start')
+            interval = setInterval(function () {
+                if (timer.time > 0) {
+                    timer.tick();
+                } else {
+                    jingle.play();
+                    clearInterval(interval);
+                }
+                document.getElementById('timer').innerHTML = timer.printTime()
+            }, 1000);
+        };
+        function stop() {
+            clearInterval(interval)
+        }
+
+        function workInterval() {
+            time = 60 * 20;
+            timer = new Timer(time);
+        }
+        function shortBreak() {
+            time = 60 * 5;
+            timer = new Timer(time);
+        }
+        function longBreak() {
+            time = 60 * 15;
+            timer = new Timer(time);
+
+        }
+    </script>
+    <script>
+
+    </script>
+
+    </body>
+
+</html>
