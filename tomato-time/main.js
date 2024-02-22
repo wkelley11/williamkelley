@@ -10,8 +10,6 @@ class Timer {
         }
     }
 
-
-
     begin() {
         this.tick();
     }
@@ -31,11 +29,16 @@ class Timer {
             const hours = Math.floor(s / 3600);
             s = s - hours * 3600;
         }
-        minutes = Math.floor(s / 60);
-        seconds = s - minutes * 60;
+        minutes = checkTime(Math.floor(s / 60));
+        seconds = checkTime(s - minutes * 60);
         document.getElementById('timer').innerHTML = `${hours ? hours + ":" : ""}${minutes}:${seconds}`;
         return `${hours ? hours + ":" : ""}${minutes}:${seconds}`;
 
     }
 
 }
+
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+  }

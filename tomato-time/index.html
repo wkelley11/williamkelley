@@ -32,7 +32,6 @@
             </div>
             <div id="tomato">
                 <span id="timer"></span>
-
             </div>
         </div>
 
@@ -43,12 +42,15 @@
         </div>
     </div>
     <script type="text/javascript" language="javascript">
-        var timer = new Timer(3600);
+        var timer = new Timer(1200);
         let interval = null;
         let jingle = new Audio("./TimerDone.mp3")
 
+        if (timer.time) {
+            document.getElementById('timer').innerHTML = timer.printTime()
+        }
+
         function start() {
-            console.log('start')
             interval = setInterval(function () {
                 if (timer.time > 0) {
                     timer.tick();
@@ -64,17 +66,25 @@
         }
 
         function workInterval() {
+            stop();
             time = 60 * 20;
             timer = new Timer(time);
+            updateTime();
         }
         function shortBreak() {
+            stop();
             time = 60 * 5;
             timer = new Timer(time);
+            updateTime();
         }
         function longBreak() {
+            stop();
             time = 60 * 15;
             timer = new Timer(time);
-
+            updateTime();
+        }
+        function updateTime() {
+            document.getElementById('timer').innerHTML = timer.printTime()
         }
     </script>
     <script>
